@@ -8,4 +8,4 @@ const myserver = http.createServer((req,res) => {
     })
 })
 
-myserver.listen(8000,()=> console.log("server started"));
+myserver.listen(8000,()=> console.log("Server started"));
