@@ -37,7 +37,7 @@ app.get("/users",async (req,res) => {
     const alldbusers = await user.find({})
     const html = `
     <ul>
-    ${alldbusers.map((user)=> `<li> ${user.firstname} </li>`).join(" ")}
+    ${alldbusers.map((user)=> `<li> ${user.firstname} " " ${user.lastname} " " ${user.email}</li>`).join(" ")}
     </ul>`
     res.send(html)
 });
