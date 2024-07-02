@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> URL Shortener </h1>
+    <!-- locals used for data that is coming from backend-->
+    <% if (locals.id) { %>
+        <p>URL Generated: http://localhost:8001/url/<%= id %></p>     
+    <% } %>
+     
+    <div>
+        <form method="POST" action="/url">  <!-- action means where this post request is to be sent in our example /url -->
+            <label> Enter your original url </label>
+            <input 
+               type = "text"  
+               name="url"                                    
+               placeholder="https://example.com" 
+            />  <!-- same name 'url' passed in back end -->
+            <button type="submit"> Generate</button>
+        </form>
+    </div>
+    <div>
+        <% if (locals.urls) { %>
+            <table> 
+                <thead>
+                    <th> S. no.</th>
+                    <th>Shortid</th>
+                    <th>Redirect</th>
+                    <th>clicks</th>
+                </thead>
+                <tbody> <!-- index start from 0-->
+                    <% urls.forEach((url, index) => { %>
+                        <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= url.shortid %></td> 
+                        <td><%= url.redirecturl %></td> 
+                        <td><%= url.visithistory.length %></td>   
+                        </tr>                   
+                    <% }) %>
+                </tbody>
+            </table>         
+        <% } %>
+    </div>
+</body>
+</html>
