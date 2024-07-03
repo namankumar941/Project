@@ -6,11 +6,16 @@ const url = require('../models/url')
 
 
 router.get("/",async (req,res)=>{
-    const allurls= await url.find({})
-    //return res.render('home') //home as our ejs file name is home.ejs
-    return res.render('home',{
-        urls: allurls
-    })
+    return res.render('default')
+    
+})
+
+router.get("/signup",async (req,res)=>{
+    return res.render('signup') 
+})
+
+router.get("/login", async (req,res)=> {
+    return res.render('login')   
 })
 
 

@@ -4,6 +4,10 @@ const mongoose = require("mongoose")
 const url = require('./models/url')
 const path = require("path") // inbuilt module
 const staticroute = require("./routes/staticRouter")
+const userroute = require("./routes/user") 
+const cookieParser = require("cookie-parser")
+const {restricttologgedinuseronly} = require('./middlewares/auth')
+
 
 
 const app = express()
@@ -16,8 +20,10 @@ app.set('views',path.resolve("./views")) //tell express where are my ejs file
 
 //middleware
 app.use(express.urlencoded({extended: false}))
-app.use("/url",urlroute)
-app.use("/test",staticroute)
+app.use(cookieParser())
+app.use("/url",restricttologgedinuseronly,urlroute)
+app.use("/user",userroute)
+app.use("/",staticroute)
 
 
 

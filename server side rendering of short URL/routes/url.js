@@ -13,7 +13,8 @@ router.post("/", async (req,res)=> {
     await url.create({
         shortid: shortId,
         redirecturl: body.url,
-        visithistory: []
+        visithistory: [],
+        createdby : req.user._id
     })
     const allurls= await url.find({})
 
@@ -33,9 +34,9 @@ router.get("/",async (req,res)=> {
 
 // redirect to original url from shortID
 router.get('/:shortId', async (req,res)=>{    
-    const shortId = req.params.shortId
+    const shortID = req.params.shortId
     const entry = await url.findOneAndUpdate(
-        { shortid : shortId }, 
+        { shortid : shortID }, 
         {$push : {
             visithistory: {
                 timestamp : Date.now()
