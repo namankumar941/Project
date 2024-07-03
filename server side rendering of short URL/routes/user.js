@@ -3,6 +3,7 @@ const user = require('../models/users')
 const {v4 : uuidv4} = require("uuid")
 const  {setuser,getuser} = require("../service/auth")
 const router = express.Router();
+const url = require('../models/url')
 
 //add new user
 router.post("/", async (req,res)=> {
@@ -28,7 +29,13 @@ router.post("/login", async (req,res)=> {
     const sessionid = uuidv4()  
     setuser(sessionid, user)  
     res.cookie("uid", sessionid)
-    return res.render("home")
+
+    const allurls= await url.find({})
+
+    return res.render('home',{
+        urls : allurls
+    })
+    
    
 })
 
