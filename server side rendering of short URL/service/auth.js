@@ -1,11 +1,24 @@
-const sessionidtousermap = new Map()
+const jwt = require("jsonwebtoken")
+const secret = "nksingh@123"   //whoever has this key can make token
 
-function setuser(id,user){
-    sessionidtousermap.set(id,user)
+
+function setuser(user){
+    return jwt.sign(
+        {
+            _id: user._id,
+            email: user.email
+        }, 
+        secret)
 }
 
-function getuser(id){
-    return sessionidtousermap.get(id)
+function getuser(token){
+    if(!token) return null
+    try{
+        return jwt.verify(token , secret)
+    }catch(err){
+        return null;
+    }
+    
 }
 
 module.exports = {
