@@ -57,7 +57,7 @@ mongoose
 
 
 
-client.login("MTI1ODM1Mjk4NTA1MDg0NTI3OQ.GkDlCg.QxDcFjGswu9GC1iu2uY_eStqQZLlsYaVnx6wrE") //bot token
+client.login("token") //bot token
 
 //server started
 app.listen(port , ()=> console.log(`server started`))
