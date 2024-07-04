@@ -55,9 +55,9 @@ mongoose
 .catch((err)=> console.log("mongo connection error \n" , err))
 
 
+const token=''
 
-
-client.login("token") //bot token
+client.login(token) //bot token
 
 //server started
 app.listen(port , ()=> console.log(`server started`))
