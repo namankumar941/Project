@@ -42,4 +42,20 @@ router.post('/signup', async (req,res)=>{
     return res.redirect("/")
 })
 
+//get request to edit user
+router.get('/edit',async (req,res)=>{
+    const editUser = await User.find({_id : req.user._id})
+    return res.render("edit",{
+        user: editUser[0]
+    })
+
+})
+
+router.get('/editImage',async (req,res)=>{
+    const editUser = await User.find({_id : req.user._id})
+    return res.render("editImage",{
+        user: editUser[0]
+    })
+
+})
 module.exports = router 

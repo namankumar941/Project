@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Edit Personal Info</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class = "container mt-4">    
+        <div class="mb-3">
+            <img src="<%= user.profileImageURL %>" alt="Image" style="width: 125px; height: 100px;">
+            <a class="edit link mb-3"  href="/user/editImage" role="button" aria-expanded="false">
+                <p>Edit </p>
+            </a>
+        </div>
+
+        <div class="mb-3">
+            <%= user.fullName %>
+            <a class="edit link mb-3"  href="/user/editName" role="button" aria-expanded="false">
+                <span class="edit-button">Edit</span>
+            </a>
+        </div>
+            
+        <div class="mb-3">                
+            <p> <%= user.email %> </p>            
+        </div>  
+
+
+        <div class="mb-3">
+            <a class="edit link mb-3"  href="/user/editPassword" role="button" aria-expanded="false">
+                <p> Edit Password </p>
+            </a>
+        </div>
+    </div> 
+
+   
+    <%- include('./partials/scripts') %>
+</body>
+</html>
