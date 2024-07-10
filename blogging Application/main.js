@@ -35,7 +35,7 @@ app.use('/comment', commentRoute)
 
 app.get('/' ,  async (req,res)=>{
     const allBlogs =  await Blogs.find({}) 
-     
+    
     res.render('home',{
         user: req.user,
         blogs: allBlogs,
