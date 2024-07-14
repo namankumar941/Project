@@ -14,4 +14,5 @@ router.post("/addNew/:blogId",async (req,res)=>{
     return res.redirect(`/blog/${req.params.blogId}`)
 })
 
+
 module.exports = router 

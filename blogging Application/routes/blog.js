@@ -26,7 +26,7 @@ const upload = multer({storage})
 
 //to get blog
 router.get("/:id", async (req,res)=>{
-    // in blog models created by was ref to user so populate will take the object id from user and connect it with blog
+    //in blog models created by was ref to user so populate will take the object id from user and connect it with blog
     const Blog = await blog.findById(req.params.id).populate("createdBy")
     const allComments =  await Comments.find({ blogId: req.params.id}).populate("createdBy")   
     return res.render("blog",{

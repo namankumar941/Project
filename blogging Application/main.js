@@ -7,6 +7,7 @@ const Blogs = require("./models/blog")
 
 
 const userRoute = require("./routes/user")
+const editRoute = require("./routes/edit")
 const blogRoute = require("./routes/blog")
 const commentRoute= require("./routes/comments")
 const {checkForAuthentication} = require('./middleware/auth')
@@ -28,6 +29,7 @@ app.use(checkForAuthentication)
 app.use(express.static(path.resolve("./public"))) //this middleware indicates express to use public folder statically so that image can be used as it is
 
 app.use("/user", userRoute)
+app.use("/edit", editRoute)
 app.use("/blog", blogRoute)
 app.use('/comment', commentRoute)
 
