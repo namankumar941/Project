@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 
 const friendSchema = mongoose.Schema({
-    emailID1: {
+    email: {
         type : String,
     },
-    emailID2: {
-        type : String,
+    friendRequest: {
+        type : [String],
+        default: []
     },
-    Status: {
-        type : String,
-        default: 'pending'
+    friends: {
+        type : [String],
+        default: []
     },
 },{timestamps : true});
 

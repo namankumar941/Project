@@ -9,6 +9,7 @@ const {checkForAuthentication} = require('./middleware/auth')
 const editRoute = require("./route/edit")
 const userRoute = require('./route/user');
 const friendRoute = require('./route/friends');
+const messagesRoute = require('./route/messages');
 
 const app = express();
 const port= 8002
@@ -24,6 +25,7 @@ app.use(express.static(path.resolve("./public")))
 app.use('/user', userRoute)
 app.use("/edit", editRoute)
 app.use("/friend", friendRoute)
+app.use("/messages", messagesRoute)
 
 app.get("/",async (req,res)=>{
     if(!req.user) return res.render('home') 
@@ -39,7 +41,7 @@ app.get('/logout', (req,res)=>{
 })
 
 mongoose
-.connect("mongodb://localhost:27017/chatting")
+.connect("mongodb://localhost:27017/connect")
 .then(()=> console.log("mongo db connected"))
 .catch((err)=> console.log("mongo connection error",err))
 

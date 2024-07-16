@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Home Page</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <% if (locals.messages) { %>
+        <% messages.forEach(message => { %>
+          <div class="col" row row-cols-1>
+          <div class="card col" style="width: 18rem;">
+              <a class="nav-link "  aria-expanded="false">
+                  <p><%= message %></p>
+              </a>         
+            </div>
+          </div>
+      <% }) %>
+      <% } %>
+
+    <form action="/messages/send/<%= locals.to %>" method = "post">
+            
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"></label>
+          <input 
+          type="text" 
+          class="form-control" 
+          placeholder="message" 
+          required
+          id="exampleInputEmail1" 
+          name="message"
+          aria-describedby="message">        
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>

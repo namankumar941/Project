@@ -8,15 +8,14 @@
     <%- include('./partials/nav') %>
 
     <div class = "container mt-3 row row-cols-3">
-        <% Friends.forEach(friend => { %>
+        <% friends.forEach(friend => { %>
             <div class="col">
             <div class="card col" style="width: 18rem;">
-                <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="..." width="10px">
-                <div class="card-body">
-                  <h5 class="card-title"><%= blog.title %></h5>
-                  
-                  <a href="/blog/<%=blog._id%>" class="btn btn-primary">View</a>
-                </div>
+                <a class="nav-link " href="/messages/<%= friend.email %>" role="button"  aria-expanded="false">
+                    <img src="<%= friend.profileImageURL %>" alt="Image" style="width: 50px; height: 50px;">
+                  </a>
+                  <p> <%= friend.name %></p>
+                
               </div>
             </div>
         <% }) %>
