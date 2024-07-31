@@ -9,6 +9,11 @@ const User = require("./models/user")
 
 const userRoute = require('./route/user');
 const authRoute = require('./route/auth');
+const userEditRoute = require("./route/userEdit")
+const memberRoute = require('./route/member');
+const documentsRoute = require('./route/documents');
+const memberEditRoute = require("./route/memberEdit")
+
 const passport = require("passport")
 
 const app = express();
@@ -17,7 +22,7 @@ const port= 8000
 //middleware to initialize passport and creating cookie
 app.use(cookieSession({
     keys: [secretKey], // key used to encrypt cookie
-    maxAge: 1005000
+    maxAge: 24*60*60*1000
     
 }))
 app.use(passport.initialize())
@@ -27,11 +32,17 @@ app.use(passport.session())
 app.set("view engine", 'ejs')
 app.set('views',path.resolve('./views'))
 
+app.use(express.static(path.resolve("./public")))
+
+app.use(express.urlencoded({extended: false}))
 app.use('/user', userRoute)
 app.use('/auth', authRoute)
+app.use("/userEdit", userEditRoute)
+app.use("/member", memberRoute)
+app.use("/documents", documentsRoute)
+app.use("/memberEdit", memberEditRoute)
 
 app.get("/",async (req,res)=>{
-    console.log(req.user)
     return res.render('home',{
         user: req.user
     }) 

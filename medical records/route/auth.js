@@ -4,9 +4,10 @@ const googleStrategy = require("passport-google-oauth20")
 const express = require("express");
 const { clientId, clientSecret } = require("../secretData");
 
+
 //serialize and deserialize User
-passport.serializeUser((user,done)=>{   
-    done(null,user[0].userId);
+passport.serializeUser((user,done)=>{ 
+    done(null,user.userId);
 })
 passport.deserializeUser((userId,done)=>{
     User.find({userId: userId}).then((user) => {
@@ -20,17 +21,22 @@ passport.use(new googleStrategy({
     clientSecret: clientSecret ,
     callbackURL: "/auth/google/redirect"
 },async (accessToken,refreshToken,profile,done)=>{
-    const currentUser = await User.find({email : profile._json.email })
+    
+    const currentUser = await User.find({email : profile._json.email } , 'userId')
+    
     if(!currentUser[0]){
-        const newUser = await User.create({
+        const newUser= await User.create({
             email : profile._json.email,
             name : profile._json.name,
             userId : profile.id,
             profileImageURL : profile._json.picture
         })
-        done(null,newUser);
+        
+        
+      
+       done(null,{userId: newUser.userId});
     }else{
-        done(null,currentUser);
+        done(null,currentUser[0]);
     }    
 }))
 
@@ -40,12 +46,11 @@ const router = express.Router()
 
 //get request to get auth code from google
 router.get('/google',passport.authenticate("google",{
-    scope: ["profile"],
+    scope: ['email','profile']
 }))
 
-router.get('/google/redirect',passport.authenticate("google") , (req,res)=>{
-    console.log(req.user)
-    res.redirect('/profile');
+router.get('/google/redirect',passport.authenticate("google") , (req,res)=>{    
+    res.redirect('/');
 })
 
 

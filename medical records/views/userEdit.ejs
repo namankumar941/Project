@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Edit Personal Info</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class = "container mt-4">    
+        <div class="mb-3">
+            <a class="edit link mb-3"  href="/userEdit/view" role="button" aria-expanded="false">
+                <img src="<%= user.profileImageURL %>"  alt="Image" style="width: 125px; height: 100px;">
+            </a>
+            
+            <a class="edit link mb-3"  href="/userEdit/image" role="button" aria-expanded="false">
+                <p>Edit </p>
+            </a>
+        </div>
+
+        <div class="mb-3">
+            <%= user.name %>
+            <a class="edit link mb-3"  href="/userEdit/name" role="button" aria-expanded="false">
+                <span class="edit-button">Edit</span>
+            </a>
+        </div>
+            
+        <div class="mb-3">                
+            <p> <%= user.email %> </p>            
+        </div>  
+
+        <div class="mb-3">
+            <%= user.age %>
+            <a class="edit link mb-3"  href="/userEdit/age" role="button" aria-expanded="false">
+                <span class="edit-button"> Edit Age</span>
+            </a>
+        </div>
+     
+        <div class="mb-3">
+            <%= user.phoneNumber %>
+            <a class="edit link mb-3"  href="/userEdit/phoneNumber" role="button" aria-expanded="false">
+                <span class="edit-button"> Edit phoneNumber</span>
+            </a>
+        </div>
+    </div> 
+
+   
+    <%- include('./partials/scripts') %>
+</body>
+</html>

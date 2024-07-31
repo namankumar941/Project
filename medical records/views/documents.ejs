@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Home Page</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class = "container mt-4">    
+        <div class="mb-3">
+            <a class="edit link mb-3"  href="/memberEdit/view/<%= member.memberId %>" role="button" aria-expanded="false">
+                <img src="<%= member.profileImageURL %>"  alt="Image" style="width: 125px; height: 100px;">
+            </a>
+            
+            <a class="edit link mb-3"  href="/memberEdit/image/<%= member.memberId %>" role="button" aria-expanded="false">
+                <p> Edit </p>
+            </a>
+        </div>
+
+        <div class="mb-3">
+            <%= member.name %>
+            <a class="edit link mb-3"  href="/memberEdit/name/<%= member.memberId %>" role="button" aria-expanded="false">
+                <span class="edit-button">Edit</span>
+            </a>
+        </div>
+            
+         
+
+        <div class="mb-3">
+            <%= member.age %>
+            <a class="edit link mb-3"  href="/memberEdit/age/<%= member.memberId %>" role="button" aria-expanded="false">
+                <span class="edit-button"> Edit Age</span>
+            </a>
+        </div>
+    </div> 
+
+    <p>documents</p>
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>
